@@ -23,7 +23,9 @@ RUN apt-get update && apt-get install -y \
  qt5-default libqt5x11extras5-dev qttools5-dev
 RUN cd /usr/bin && ln -s python2.7 python
 
+ENV DIR_3RDPARTY=/app/meshright/3rd
+
 WORKDIR /app/meshright/3rd
 copy ./3rd /app/meshright/3rd
 
-ENV DIR_3RDPARTY=/app/meshright/3rd
+
