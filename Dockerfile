@@ -23,9 +23,14 @@ RUN apt-get update && apt-get install -y \
  qt5-default libqt5x11extras5-dev qttools5-dev
 RUN cd /usr/bin && ln -s python2.7 python
 
-ENV DIR_3RDPARTY=/app/meshright/3rd
-
-WORKDIR /app/meshright/3rd
 copy ./3rd /app/meshright/3rd
+RUN cd /app/meshright/3rd && tar -zxvf VTK-7.1.1.tar.gz
+RUN cd /app/meshright/3rd/VTK-7.1.1 && mkdir output
+RUN rm -f VTK-7.1.1.tar.gz 
 
+WORKDIR /app/meshright/3rd/VTK-7.1.1/output
+RUN cmake -DCMAKE_BUILD_TYPE:STRING=Release -DBUILD_TESTING:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -DBUILD_EXAMPLES:BOOL=OFF ../
+RUN make -j4
+
+ENV DIR_3RDPARTY=/app/meshright/3rd
 
