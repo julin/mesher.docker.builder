@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
  cmake cmake-curses-gui \
  libbz2-dev \
  zlib1g-dev \
+ libxmu-dev \
  libxt-dev \
  qt5-default libqt5x11extras5-dev qttools5-dev
 RUN cd /usr/bin && ln -s python2.7 python
