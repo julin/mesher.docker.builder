@@ -13,7 +13,7 @@
   - CD to the folder which include occ7.1
   - start the docker a new docker image instance,then:
   ```
-  sudo docker run -v "$(pwd):/occ7.1"  -t -i mshbuilder:1 /bin/bash
+  sudo docker run -v "$(pwd):/occ7.1"  -t -i mshbuild:1 /bin/bash
   ```
   - inside the docker builder machine:
   ```
