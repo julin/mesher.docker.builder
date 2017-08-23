@@ -20,8 +20,10 @@ RUN apt-get update && apt-get install -y \
  libbz2-dev \
  zlib1g-dev \
  libxmu-dev \
+ libxi-dev \
  libxt-dev \
  qt5-default libqt5x11extras5-dev qttools5-dev
+ 
 RUN cd /usr/bin && ln -s python2.7 python
 
 copy ./3rd /app/meshright/3rd
