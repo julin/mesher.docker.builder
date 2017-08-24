@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y software-properties-common && add-apt-r
 # Install pre-reqs
 RUN apt-get update && apt-get install -y \
  build-essential \
+ gcc-4.8 \
+ g++-4.8 \
  git \
  wget \
  ninja-build \
@@ -23,8 +25,15 @@ RUN apt-get update && apt-get install -y \
  libxi-dev \
  libxt-dev \
  qt5-default libqt5x11extras5-dev qttools5-dev
- 
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN cd /usr/bin && ln -s python2.7 python
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 999 \
+ && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 999 \
+ && update-alternatives --install /usr/bin/cc  cc  /usr/bin/gcc-4.8 999 \
+ && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-4.8 999
+
+ENV CC="ccache gcc" CXX="ccache g++" 
 
 copy ./3rd /app/meshright/3rd
 RUN cd /app/meshright/3rd && tar -zxvf VTK-7.1.1.tar.gz
