@@ -44,9 +44,5 @@ rm -f opencascade-6.9.0.tar.gz && \
 rm -f boost_1_57_0.tar.gz && \
 rm -f msgpack.tar.gz
 
-RUN cd /app/meshright/3rd/VTK-7.1.1 && mkdir output
-RUN cd /app/meshright/3rd/VTK-7.1.1/output && cmake \
--DCMAKE_BUILD_TYPE:STRING=Release -DBUILD_TESTING:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -DBUILD_EXAMPLES:BOOL=OFF ../ && make -j4
-
 ENV DIR_3RDPARTY=/app/meshright/3rd
 
