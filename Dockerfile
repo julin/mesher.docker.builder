@@ -32,13 +32,14 @@ RUN cd /usr/bin && ln -s python2.7 python
 RUN ln -s /usr/bin/g++-4.8 /usr/bin/g++ -f && ln -s /usr/bin/gcc-4.8 /usr/bin/gcc -f
 
 copy ./3rd /app/meshright/3rd
-RUN cd /app/meshright/3rd && tar -zxvf VTK-7.1.1.tar.gz
+RUN cd /app/meshright/3rd && tar -zxvf VTK-7.1.1.tar.gz && tar -zxvf opencascade-7.1.0.tar.gz && rm -f VTK-7.1.1.tar.gz && rm -f opencascade-7.1.0.tar.gz
 RUN cd /app/meshright/3rd/VTK-7.1.1 && mkdir output
-RUN rm -f VTK-7.1.1.tar.gz 
+RUN cd /app/meshright/3rd/VTK-7.1.1/output && cmake \
+-DCMAKE_BUILD_TYPE:STRING=Release -DBUILD_TESTING:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -DBUILD_EXAMPLES:BOOL=OFF ../ && make -j4
 
-WORKDIR /app/meshright/3rd/VTK-7.1.1/output
-RUN cmake -DCMAKE_BUILD_TYPE:STRING=Release -DBUILD_TESTING:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -DBUILD_EXAMPLES:BOOL=OFF ../
-RUN make -j4
+RUN cd /app/meshright/3rd/opencascade-7.1.0 && mkdir output
+RUN cd /app/meshright/3rd/opencascade-7.1.0/output && cmake \
+-DCMAKE_BUILD_TYPE:STRING=Release -D3RDPARTY_DIR:STRING=/app/meshright/3rd/opencascade-7.1.0/3rd/linux64  ../ && make -j4 
 
 ENV DIR_3RDPARTY=/app/meshright/3rd
 
