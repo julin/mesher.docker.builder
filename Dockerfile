@@ -32,7 +32,18 @@ RUN cd /usr/bin && ln -s python2.7 python
 RUN ln -s /usr/bin/g++-4.8 /usr/bin/g++ -f && ln -s /usr/bin/gcc-4.8 /usr/bin/gcc -f
 
 copy ./3rd /app/meshright/3rd
-RUN cd /app/meshright/3rd && tar -zxvf VTK-7.1.1.tar.gz && tar -zxvf opencascade-7.1.0.tar.gz && rm -f VTK-7.1.1.tar.gz && rm -f opencascade-7.1.0.tar.gz
+RUN cd /app/meshright/3rd && \
+tar -zxvf VTK-7.1.1.tar.gz && \
+tar -zxvf opencascade-6.9.0.tar.gz && \
+tar -zxvf opencascade-7.1.0.tar.gz && \
+tar -zxvf boost_1_57_0.tar.gz && \
+tar -zxvf msgpack.tar.gz && \
+rm -f VTK-7.1.1.tar.gz && \
+rm -f opencascade-7.1.0.tar.gz && \
+rm -f opencascade-6.9.0.tar.gz && \
+rm -f boost_1_57_0.tar.gz && \
+rm -f msgpack.tar.gz
+
 RUN cd /app/meshright/3rd/VTK-7.1.1 && mkdir output
 RUN cd /app/meshright/3rd/VTK-7.1.1/output && cmake \
 -DCMAKE_BUILD_TYPE:STRING=Release -DBUILD_TESTING:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -DBUILD_EXAMPLES:BOOL=OFF ../ && make -j4
