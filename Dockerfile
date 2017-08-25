@@ -28,12 +28,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN cd /usr/bin && ln -s python2.7 python
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 999 \
- && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 999 \
- && update-alternatives --install /usr/bin/cc  cc  /usr/bin/gcc-4.8 999 \
- && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-4.8 999
 
-ENV CC="ccache gcc" CXX="ccache g++" 
+RUN ln -s /usr/bin/g++-4.8 /usr/bin/g++ -f && ln -s /usr/bin/gcc-4.8 /usr/bin/gcc -f
 
 copy ./3rd /app/meshright/3rd
 RUN cd /app/meshright/3rd && tar -zxvf VTK-7.1.1.tar.gz
