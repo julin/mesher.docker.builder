@@ -8,7 +8,7 @@
   ```
   sudo docker run -v "/mnt/hgfs/H/work/prog_julin/MrMesher:/MrMesher" -t -i mshbuild:1 /bin/bash
   ```
- - you can all mount more folders in host machine like:
+ - you can mount more folders in host machine like:
   ```
     sudo docker run -v "/mnt/hgfs/H/work/prog_julin/MrMesher:/MrMesher" -v "$(pwd):/hosthome" -t -i mshbuild:1 /bin/bash
   ```
