@@ -8,6 +8,10 @@
   ```
   sudo docker run -v "/mnt/hgfs/H/work/prog_julin/MrMesher:/MrMesher" -t -i mshbuild:1 /bin/bash
   ```
+ - you can all mount more folders in host machine like:
+  ```
+    sudo docker run -v "/mnt/hgfs/H/work/prog_julin/MrMesher:/MrMesher" -v "$(pwd):/hosthome" -t -i mshbuild:1 /bin/bash
+  ```
   
   ## Build other 3rd party, for example occ7.1
   - CD to the folder which include occ7.1
