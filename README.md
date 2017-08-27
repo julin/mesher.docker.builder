@@ -13,7 +13,7 @@
     sudo docker run -v "/mnt/hgfs/H/work/prog_julin/MrMesher:/MrMesher" -v "$(pwd):/hosthome" -t -i mshbuild:1 /bin/bash
   ```
   
-  ## Build other 3rd party, for example occ7.1
+  ## If there's other 3rd party to build, for example occ7.1, you can:
   - CD to the folder which include occ7.1
   - start the docker a new docker image instance,then:
   ```
