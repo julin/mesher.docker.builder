@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
  build-essential \
  gcc-4.8 \
  g++-4.8 \
+ valgrind \
  git \
  wget \
  ninja-build \
